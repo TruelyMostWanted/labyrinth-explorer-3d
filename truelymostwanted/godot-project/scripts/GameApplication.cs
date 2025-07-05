@@ -1,5 +1,8 @@
-﻿using Godot;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using Godot;
 using LabyrinthExplorer3D.scripts.core.functions;
+using LabyrinthExplorer3D.scripts.game.ai;
 
 namespace LabyrinthExplorer3D.scripts;
 

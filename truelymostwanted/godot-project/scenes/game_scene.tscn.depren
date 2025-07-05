@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c4i4mdgyjqgtg"]
+[gd_scene load_steps=19 format=3 uid="uid://c4i4mdgyjqgtg"]
 
 [ext_resource type="Script" uid="uid://crx5v2lrs7lxf" path="res://scripts/GameApplication.cs" id="1_s76x2"]
 [ext_resource type="PackedScene" uid="uid://c2xer14lv8jdx" path="res://packed-scenes/core/menus/specific/setup_menu.tscn" id="4_77hjl"]
@@ -10,13 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://hvmivga6xqxh" path="res://packed-scenes/core/menus/specific/main_menu.tscn" id="13_s76x2"]
 [ext_resource type="PackedScene" uid="uid://diw5fjea1jxmm" path="res://packed-scenes/game/gui/game_ui.tscn" id="13_tqxxy"]
 [ext_resource type="Script" uid="uid://br5yauo4w6yr2" path="res://scripts/TestObjectNode.cs" id="14_5ay1a"]
-[ext_resource type="Script" uid="uid://40v6ggqwh5fg" path="res://scripts/game/npc/NpcBrainAI.cs" id="14_6aqbo"]
 [ext_resource type="PackedScene" uid="uid://cd04sjth30joj" path="res://packed-scenes/core/menus/specific/tutorial_menu.tscn" id="14_77hjl"]
-[ext_resource type="Script" uid="uid://djmle8emi8anq" path="res://scripts/game/npc/NpcController3D.cs" id="14_mwyo0"]
 [ext_resource type="PackedScene" uid="uid://gj7uaal65c7k" path="res://packed-scenes/core/menus/specific/options_menu.tscn" id="15_6aqbo"]
-[ext_resource type="Script" uid="uid://n1sluhw2myeb" path="res://scripts/game/ai/LlmClient.cs" id="15_77hjl"]
 [ext_resource type="Script" uid="uid://dnh78tfbuslrh" path="res://scripts/TestObject.cs" id="15_ldkr4"]
-[ext_resource type="PackedScene" uid="uid://dk8arfctj4ysx" path="res://packed-scenes/game/characters/npcs/npc_3d.tscn" id="15_s76x2"]
 [ext_resource type="PackedScene" uid="uid://y87txeuxvg3x" path="res://packed-scenes/core/menus/specific/credits_menu.tscn" id="16_ro0ie"]
 [ext_resource type="PackedScene" uid="uid://bfwvu6qkkusc4" path="res://packed-scenes/core/menus/specific/pause_menu.tscn" id="17_103ce"]
 
@@ -134,24 +130,6 @@ metadata/_custom_type_script = "uid://ctm2fi05k81fr"
 
 [node name="Player3D" parent="Game/PlayerController3D" instance=ExtResource("11_ldkr4")]
 transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 0, 0.636973, 0.822873)
-
-[node name="NpcController3D" type="Node3D" parent="Game" node_paths=PackedStringArray("CurrentNpc")]
-script = ExtResource("14_mwyo0")
-CurrentNpc = NodePath("Npc3D")
-metadata/_custom_type_script = "uid://djmle8emi8anq"
-
-[node name="Npc3D" parent="Game/NpcController3D" instance=ExtResource("15_s76x2")]
-transform = Transform3D(1, 0, -1.7484558e-07, 0, 1, 0, 1.7484558e-07, 0, 1, 0, 0.6436912, 3.9724832)
-
-[node name="Npc3dAi" type="Node" parent="Game" node_paths=PackedStringArray("NpcController", "LlmClient")]
-script = ExtResource("14_6aqbo")
-NpcController = NodePath("../NpcController3D")
-LlmClient = NodePath("LlmClient")
-metadata/_custom_type_script = "uid://40v6ggqwh5fg"
-
-[node name="LlmClient" type="Node" parent="Game/Npc3dAi"]
-script = ExtResource("15_77hjl")
-metadata/_custom_type_script = "uid://n1sluhw2myeb"
 
 [node name="LevelController3D" parent="Game" instance=ExtResource("12_liy57")]
 
