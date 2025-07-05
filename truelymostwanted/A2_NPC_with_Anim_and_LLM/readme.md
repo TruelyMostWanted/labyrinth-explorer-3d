@@ -197,7 +197,7 @@ Es gibt noch 3 weitere Alternativen mit denen man weitere Aspekte testen kann:
 - Von Grund auf selbst Programmieren
 - Aufwand deutlich höher, aber besser steuerbar
 
-✅ 8. Fazit
+### 8. Fazit
 Die Integration von LLMs wie LLaMA 3, CodeLLaMA, Mistral, Gemma, Phi über Ollama bietet eine gute Möglichkeit, NPCs mit einem „entscheidungsfähigen Gehirn“ auszustatten. 
 Die Idee an sich ist garnicht verkehrt und würde sicherlich einige Spiele die vor 15-20 Jahren erstellt wurden deutlich aufwerten durch noch dynamischere und unberechenbarere Reaktionen.
 Am Ende ist die Frage immer: Welche Daten braucht man? In unserem Beispiel wurden mit Sinnen gearbeitet wie Sehen und Hören.
@@ -205,3 +205,15 @@ Vielleicht könnten auch Mögliche Bewegungsrichtungen berücksichtigt werden od
 Ist ein Charakter eher Schüchtern/Ängstlich? oder doch eher Neutral? oder dir Aggressiv/Feindlich angesehen?
 Zu einer guten Simulation gehören sehr viele Parameter die zusmamen komplexe Logiken und Fähigkeiten ergeben.
 Ein guter Mix aus "Supervised Learning", "Training" und realistischen Dynamischen Entscheidungen durch gut programmierte Regeln löst meist den Bedarf.
+
+
+### 9. 3D Charaktere, Design und Animation
+![image](https://github.com/user-attachments/assets/bdbd2e94-d633-458c-a874-34fc955c0ca0)
+![image](https://github.com/user-attachments/assets/7c0449c8-4429-44af-b93b-ff35d22040c1)
+![image](https://github.com/user-attachments/assets/5295ac3f-4622-4ee4-bae6-cfd3751e64c2)
+![image](https://github.com/user-attachments/assets/479d2cf9-4970-400a-bbb9-e1261fc0ccda)
+![image](https://github.com/user-attachments/assets/91340702-e610-4b8c-b68b-9abb8daafe15)
+![image](https://github.com/user-attachments/assets/95a7e540-6d04-4bbd-a1c4-cf4a8259a1de)
+![image](https://github.com/user-attachments/assets/0d7077e6-7d9a-4a08-8947-683b2be5f68f)
+![image](https://github.com/user-attachments/assets/43ae1413-065c-4fdf-9d4d-720c32d58b9d)
+![image](https://github.com/user-attachments/assets/7c20c74c-5d92-4974-87a8-c7f40c15375d)
