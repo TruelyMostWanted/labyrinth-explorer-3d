@@ -13,11 +13,17 @@ public partial class EyesNpcBehaviour3D : CharacterBehaviour3D
     [Export] public double TimeInSight;
     [Export] public double TimeSinceLastSeen;
     
+    
+    [Export] public Sprite3D IsViewingSprite3D;
+    [Export] public Sprite3D IsNotViewingSprite3D;
+    
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
         var globalPos = PlayerController3D.Instance.CurrentPlayer.GlobalPosition;
         SeesPlayer = OwningPlayer.Eyes.IsPositionInFrustum(globalPos);
+        IsViewingSprite3D.Visible = SeesPlayer;
+        IsNotViewingSprite3D.Visible = !SeesPlayer;
         if (SeesPlayer)
         {
             DistanceToPlayer = OwningPlayer.GlobalPosition.DistanceTo(globalPos);

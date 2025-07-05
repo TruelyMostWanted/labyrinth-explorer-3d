@@ -30,10 +30,7 @@ public partial class LlmClient : Node
     [Export] public Model OllamaModel = Model.llama3;
     [Export] public bool UseStream = false;
     
-    private readonly HttpClient _httpClient = new HttpClient() {
-        BaseAddress = new Uri($"http://localhost:11434/api/generate")
-    };
-    
+
     public static NpcReaction ExtractNpcReaction(string llmFullResponse)
     {
         try
@@ -63,7 +60,10 @@ public partial class LlmClient : Node
     
     public async Task<string> SendRequestAsync(string prompt)
     {
-        //GD.Print(prompt);
+        HttpClient _httpClient = new HttpClient() {
+            BaseAddress = new Uri($"http://localhost:11434/api/generate")
+        };
+        
         var requestBody = new
         {
             model = OllamaModel.ToString(),
