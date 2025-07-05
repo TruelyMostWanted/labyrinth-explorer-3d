@@ -6,7 +6,7 @@ using LabyrinthExplorer3D.scripts.game.functions;
 namespace LabyrinthExplorer3D.scripts.game.abilties;
 
 [GlobalClass]
-public partial class Player3dPauseAbility : Player3dAbility
+public partial class Character3dPauseAbility : Character3dAbility
 {
     public override void _OnProcess(double delta)
     {

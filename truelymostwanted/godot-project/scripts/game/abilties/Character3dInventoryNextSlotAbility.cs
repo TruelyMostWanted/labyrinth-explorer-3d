@@ -4,7 +4,7 @@ using LabyrinthExplorer3D.scripts.game.components;
 namespace LabyrinthExplorer3D.scripts.game.abilties;
 
 [GlobalClass]
-public partial class Player3dInventoryPreviousSlotAbility : Player3dAbility
+public partial class Character3dInventoryNextSlotAbility : Character3dAbility
 {
     public override void _OnProcess(double delta)
     {
@@ -16,10 +16,10 @@ public partial class Player3dInventoryPreviousSlotAbility : Player3dAbility
         if (!IsAnyInputActionTriggered())
             return;
 
-        var canGet = OwningPlayer.TryGetComponent<InventoryComponent>(out var inventoryComponent);
+        var canGet = OwningCharacter.TryGetComponent<InventoryComponent>(out var inventoryComponent);
         if (!canGet)
             return;
         
-        inventoryComponent.Inventory.SelectPreviousSlot();
+        inventoryComponent.Inventory.SelectNextSlot();
     }
 }

@@ -2,7 +2,8 @@
 
 namespace LabyrinthExplorer3D.scripts.game.abilties;
 
-public partial class Player3dItemDropAbility : Player3dAbility
+[GlobalClass]
+public partial class Character3dInteractAbility : Character3dAbility
 {
     public override void _OnProcess(double delta)
     {
@@ -13,5 +14,7 @@ public partial class Player3dItemDropAbility : Player3dAbility
     {
         if (!IsAnyInputActionTriggered())
             return;
+        
+        GD.Print("Me wants to interact!");
     }
 }

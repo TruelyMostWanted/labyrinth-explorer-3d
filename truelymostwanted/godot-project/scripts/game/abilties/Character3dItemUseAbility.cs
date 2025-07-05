@@ -2,7 +2,7 @@
 
 namespace LabyrinthExplorer3D.scripts.game.abilties;
 
-public partial class Player3dItemUseAbility : Player3dAbility
+public partial class Character3dItemUseAbility : Character3dAbility
 {
     public override void _OnProcess(double delta)
     {

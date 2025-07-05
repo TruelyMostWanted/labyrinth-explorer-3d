@@ -5,7 +5,7 @@ using LabyrinthExplorer3D.scripts.game.items;
 namespace LabyrinthExplorer3D.scripts.game.abilties;
 
 [GlobalClass]
-public partial class Player3dRayCastAbility : Player3dAbility
+public partial class Character3dRayCastAbility : Character3dAbility
 {
     [Export] public RayCast3D RayCast;
     [Export] public bool IsColliding = false;

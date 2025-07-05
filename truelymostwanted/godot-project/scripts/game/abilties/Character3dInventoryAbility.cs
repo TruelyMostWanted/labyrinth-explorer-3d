@@ -5,7 +5,7 @@ using LabyrinthExplorer3D.scripts.game.items;
 namespace LabyrinthExplorer3D.scripts.game.abilties;
 
 [GlobalClass]
-public partial class Player3dInventoryAbility : Player3dAbility
+public partial class Character3dInventoryAbility : Character3dAbility
 {
     [Export] public Inventory Inventory;
     

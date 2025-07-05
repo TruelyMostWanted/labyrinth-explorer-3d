@@ -3,7 +3,7 @@ using Godot;
 namespace LabyrinthExplorer3D.scripts.game.abilties;
 
 [GlobalClass]
-public partial class Player3dLookAroundAbility : Player3dAbility
+public partial class Character3dLookAroundAbility : Character3dAbility
 {
 	[Export] public float ActionRotationSpeed = 15f;
 	[Export] public float MouseRotationSpeed = 0.1f;
@@ -17,13 +17,13 @@ public partial class Player3dLookAroundAbility : Player3dAbility
 		//Left (-X), Right (+X)
 		var relativeDegrees = relative * MouseRotationSpeed;
 		var relativeRadiansX = Mathf.DegToRad(relativeDegrees.X);
-		OwningPlayer.RotateY((!InvertXAxis) ? -relativeRadiansX : relativeRadiansX);
+		OwningCharacter.RotateY((!InvertXAxis) ? -relativeRadiansX : relativeRadiansX);
 				
 		//Up (-Y), Down (+Y)
-		var camRotation = OwningPlayer.Camera.RotationDegrees;
+		var camRotation = OwningCharacter.Eyes.RotationDegrees;
 		camRotation.X += (!InvertYAxis) ? -relativeDegrees.Y : relativeDegrees.Y;
 		camRotation.X = Mathf.Clamp(camRotation.X, -LimitXRotation, LimitXRotation);
-		OwningPlayer.Camera.RotationDegrees = camRotation;
+		OwningCharacter.Eyes.RotationDegrees = camRotation;
 	}
 
 	private void _OnActionTriggered()
