@@ -4,6 +4,7 @@ using System.Linq;
 using Godot;
 using Godot.Collections;
 using LabyrinthExplorer3D.scripts.game.items;
+using LabyrinthExplorer3D.scripts.game.npc;
 using LabyrinthExplorer3D.scripts.game.player;
 
 namespace LabyrinthExplorer3D.scripts.game.level;
@@ -43,8 +44,9 @@ public partial class LevelGenerator3D : Node3D
 
     [Export] public Color EmptyTileColor = Colors.Black;
     [Export] public Color RegularTileColor = Colors.White;
-    [Export] public Color GlasTileColor = Colors.Gray;
-    [Export] public Color SpawnColor = Colors.Green;
+    [Export] public Color GlassTileColor = Colors.Gray;
+    [Export] public Color PlayerSpawnColor = Colors.Green;
+    [Export] public Color NpcSpawnColor = Colors.Yellow;
     [Export] public Color GoalColor = Colors.Red;
     [Export] public Color ItemColor = Colors.Blue;
     
@@ -52,9 +54,21 @@ public partial class LevelGenerator3D : Node3D
     {
         return img.GetPixel(x, y) == EmptyTileColor;
     }
-    public bool IsSpawnField(Image img, Vector2I imgSize, int x, int y)
+    public bool IsPlayerSpawnField(Image img, Vector2I imgSize, int x, int y)
     {
-        return img.GetPixel(x, y) == SpawnColor;
+        return img.GetPixel(x, y) == PlayerSpawnColor;
+    }
+    public bool IsNpcSpawnField(Image img, Vector2I imgSize, int x, int y)
+    {
+        return img.GetPixel(x, y) == NpcSpawnColor;
+    }
+    public bool IsRegularField(Image img, Vector2I imgSize, int x, int y)
+    {
+        return img.GetPixel(x, y) == RegularTileColor;
+    }
+    public bool IsGlassField(Image img, Vector2I imgSize, int x, int y)
+    {
+        return img.GetPixel(x, y) == GlassTileColor;
     }
     public bool IsGoalField(Image img, Vector2I imgSize, int x, int y)
     {
@@ -169,9 +183,14 @@ public partial class LevelGenerator3D : Node3D
                     var position = new Vector3(x * 4, 0, y * 4);
                     _TryInstantiateMesh(level, position, mesh);
 
-                    if (IsSpawnField(img, imgSize, x, y))
+                    if (IsPlayerSpawnField(img, imgSize, x, y))
                     {
                         PlayerController3D.Instance.CurrentPlayer.GlobalPosition = position + new Vector3(0, 3, 0);
+                    }
+
+                    if (IsNpcSpawnField(img, imgSize, x, y))
+                    {
+                        NpcController3D.Instance.CurrentNpc.GlobalPosition = position;
                     }
 
                     if (IsItemField(img, imgSize, x, y))
