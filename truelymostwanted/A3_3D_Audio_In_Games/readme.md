@@ -125,6 +125,8 @@ Moderne Engines bieten unterschiedliche Spatial-Audio-Funktionen. Viele setzen a
 
 In einem Labyrinth-Setup in Godot 4.4 agiert ein NPC mit einem **AudioListener3D**, um Geräusche im Umfeld wahrzunehmen. Hier ein tiefgehenderer Überblick zur Integration und Logik:
 
+---
+
 ### 4.1 Godot Nodes & Documentation
 
 - **AudioStreamPlayer3D**: Spielt räumliche Klänge ab – Position, Volume, Attenuation und Panning inklusive.  
@@ -137,7 +139,14 @@ In einem Labyrinth-Setup in Godot 4.4 agiert ein NPC mit einem **AudioListener3D
   → [Dokumentation Camera3D – allgemeine Informationen](https://docs.godotengine.org/en/4.4/classes/class_camera3d.html#class-camera3d)  
   → [Informationen zu Doppler-Tracking](https://docs.godotengine.org/en/4.4/classes/class_camera3d.html#enum-camera3d-dopplertracking)
 
-### 4.2 Szenario & Logik
+---
+
+### 4.2 Steam-Audio als GDExtension
+Modernste Erweiterung: [godot-steam-audio auf GitHub](https://github.com/stechyo/godot-steam-audio) als GDExtension zur Integration von Steam Audio (Occlusion, Reverb, HRTF).
+
+---
+
+### 4.3 Szenario & Logik
 
 - Der NPC verfügt über einen `AudioListener3D` sowie eine `Camera3D`, um Audio- und Sichtinformationen zu kombinieren.
 - Mehrere `AudioStreamPlayer3D`-Instanzen im Labyrinth erzeugen Klänge (z. B. Schritte, Flüstern, Knarren).
@@ -145,7 +154,9 @@ In einem Labyrinth-Setup in Godot 4.4 agiert ein NPC mit einem **AudioListener3D
   - Die Lautstärke (Distance Attenuation) und Richtung (Panning) lassen Rückschlüsse auf Entfernung und Richtung zu.
   - Optional: Dopplereffekt (über Camera3D → DopplerTracking) bei sich bewegenden Quellen.
 
-### 4.3 Entscheidungsmuster des NPC
+---
+
+### 4.4 Entscheidungsmuster des NPC
 
 Der NPC wertet akustische Eigenschaften wie Lautstärke und Klangfarbe aus, um sein Verhalten zu steuern:
 
@@ -155,7 +166,9 @@ Der NPC wertet akustische Eigenschaften wie Lautstärke und Klangfarbe aus, um s
 | Lautes, klar geortetes Geräusch  | **Aggressiv/Schnell** – sprintet los    |
 | Hörbar dumpfes, unheimliches Geräusch | **Flucht** – zieht sich zurück         |
 
-### 4.4 Technische Umsetzung
+---
+
+### 4.5 Technische Umsetzung
 
 - **Basisfunktionen:**  
   - Godot liefert Positions- und Distanzinformationen durch die Audio-Engine.  
@@ -174,7 +187,7 @@ Der NPC wertet akustische Eigenschaften wie Lautstärke und Klangfarbe aus, um s
 
 ---
 
-### 4.5 Vorteile dieser Technik
+### 4.6 Vorteile dieser Technik
 
 - **Immersion:** NPCs wirken „lebendiger“, da sie akustisch auf die Spielumgebung reagieren.  
 - **Gameplay-Mechanik:** Spieler können Geräusche erzeugen, um NPCs abzulenken oder zu beeinflussen.  
