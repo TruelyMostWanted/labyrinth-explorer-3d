@@ -121,28 +121,46 @@ Moderne Engines bieten unterschiedliche Spatial-Audio-Funktionen. Viele setzen a
 
 ---
 
-## 4. Verwendung für einen NPC
+## 4. Erweiterte Verwendung für einen NPC (Godot Engine)
 
-### Szenario
+In einem Labyrinth-Setup in Godot 4.4 agiert ein NPC mit einem **AudioListener3D**, um Geräusche im Umfeld wahrzunehmen. Hier ein tiefgehenderer Überblick zur Integration und Logik:
 
-Ein NPC bewegt sich durch ein **Labyrinth** in Godot 4.4.  
-- Der NPC besitzt einen `AudioListener3D`.  
-- Geräusche werden durch `AudioStreamPlayer3D`-Instanzen im Labyrinth abgespielt.  
-- Der NPC „hört“ diese Geräusche, kann die Richtung und Lautstärke interpretieren und reagiert:
+### 4.1 Godot Nodes & Documentation
 
-| Geräuschtyp            | Verhalten des NPC |
-|------------------------|-------------------|
-| Leises, rhythmisches Geräusch | Neugierig nähern |
-| Lautes, auffälliges Geräusch  | Schnell dorthin laufen |
-| Bedrohliches Geräusch        | Fliehen / Rückzug |
+- **AudioStreamPlayer3D**: Spielt räumliche Klänge ab – Position, Volume, Attenuation und Panning inklusive.  
+  → [Dokumentation AudioStreamPlayer3D](https://docs.godotengine.org/de/4.x/classes/class_audiostreamplayer3d.html)
 
----
+- **AudioListener3D**: Repräsentiert die „Ohren“ des NPCs – verarbeitet räumliche Informationen aller Klänge im Umfeld.  
+  → [Dokumentation AudioListener3D](https://docs.godotengine.org/en/4.4/classes/class_audiolistener3d.html)
 
-### Technische Umsetzung
+- **Camera3D**: Visualisiert, was der NPC sieht; enthält auch Einstellungen zur Dopplerverschiebung, relevant bei schnellen Audioquellen.  
+  → [Dokumentation Camera3D – allgemeine Informationen](https://docs.godotengine.org/en/4.4/classes/class_camera3d.html#class-camera3d)  
+  → [Informationen zu Doppler-Tracking](https://docs.godotengine.org/en/4.4/classes/class_camera3d.html#enum-camera3d-dopplertracking)
+
+### 4.2 Szenario & Logik
+
+- Der NPC verfügt über einen `AudioListener3D` sowie eine `Camera3D`, um Audio- und Sichtinformationen zu kombinieren.
+- Mehrere `AudioStreamPlayer3D`-Instanzen im Labyrinth erzeugen Klänge (z. B. Schritte, Flüstern, Knarren).
+- **Wahrnehmung durch den NPC:**
+  - Die Lautstärke (Distance Attenuation) und Richtung (Panning) lassen Rückschlüsse auf Entfernung und Richtung zu.
+  - Optional: Dopplereffekt (über Camera3D → DopplerTracking) bei sich bewegenden Quellen.
+
+### 4.3 Entscheidungsmuster des NPC
+
+Der NPC wertet akustische Eigenschaften wie Lautstärke und Klangfarbe aus, um sein Verhalten zu steuern:
+
+| akustische Wahrnehmung    | NPC-Verhalten                        |
+|---------------------------|--------------------------------------|
+| Leises, gleichmäßiges Geräusch   | **Neugierig** – nähert sich vorsichtig |
+| Lautes, klar geortetes Geräusch  | **Aggressiv/Schnell** – sprintet los    |
+| Hörbar dumpfes, unheimliches Geräusch | **Flucht** – zieht sich zurück         |
+
+### 4.4 Technische Umsetzung
 
 - **Basisfunktionen:**  
-  - Godot liefert Positions- und Distanzinformationen bereits durch die Audio-Engine.  
+  - Godot liefert Positions- und Distanzinformationen durch die Audio-Engine.  
   - Die Engine berechnet Pegel und Panning automatisch relativ zum Listener.
+  - Alternative: Je größer die Distanz zum AudioStreamPlayer3D , desto leiser das Audio.
 
 - **Erweiterung mit Spatial Audio:**  
   - *Steam Audio Plugin*: Realistischere Akustik durch Occlusion (Schall durch Wände), Reverb und HRTF.  
@@ -156,7 +174,7 @@ Ein NPC bewegt sich durch ein **Labyrinth** in Godot 4.4.
 
 ---
 
-### Vorteile dieser Technik
+### 4.5 Vorteile dieser Technik
 
 - **Immersion:** NPCs wirken „lebendiger“, da sie akustisch auf die Spielumgebung reagieren.  
 - **Gameplay-Mechanik:** Spieler können Geräusche erzeugen, um NPCs abzulenken oder zu beeinflussen.  
@@ -164,7 +182,7 @@ Ein NPC bewegt sich durch ein **Labyrinth** in Godot 4.4.
 
 ---
 
-## Fazit
+## 5. Fazit
 
 Spatial Audio ist eine Schlüsseltechnologie für moderne Spiele und immersive Anwendungen.  
 Engines wie Unreal bieten bereits umfassende Werkzeuge, während Godot über Community-Plugins wie Steam Audio ausgebaut werden kann.  
