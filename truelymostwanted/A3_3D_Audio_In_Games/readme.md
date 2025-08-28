@@ -16,17 +16,57 @@ Die wichtigsten theoretischen Grundlagen:
 
 ---
 
-## 2. Anwendungsbereiche
+## 2. Arten von räumlichem Audio
 
-Spatial Audio ist ein Schlüsselbereich moderner Spielentwicklung:
+In Spielen gibt es verschiedene Verfahren zur Umsetzung von räumlichem Audio. Diese unterscheiden sich in Komplexität, Genauigkeit und Performance.
 
-| Bereich                     | Beschreibung |
-|----------------------------|--------------|
-| **Computerspiele**         | Präzises Richtungshören für Shooter, Horror-, Stealth- und Open-World-Spiele. |
-| **Virtuelle Realität (VR)**| Immersion und realistische Kopfbewegungsanpassung. |
-| **KI & NPCs**              | NPCs können Geräusche „hören“ und darauf reagieren. |
-| **Barrierefreie Spiele**   | Präzise akustische Navigation für Spieler mit Sehbehinderung. |
-| **Simulationen**           | Realistische Raumakustik für Training, Architektur, Akustikplanung. |
+### 2.1 HRTF-basiertes binaurales Rendering
+
+- **Prinzip:**  
+  HRTF (Head-Related Transfer Function) modelliert, wie Kopf, Torso und Ohrmuscheln Schallwellen beeinflussen. Jeder Klang wird gefiltert, sodass er beim Hören über Kopfhörer wie aus einer bestimmten Richtung wahrgenommen wird.
+  
+- **Eigenschaften:**  
+  - Sehr präzise Richtungswahrnehmung.
+  - Besonders gut für Kopfhörer geeignet.
+  - Benötigt für jede Quelle Filterung → hohe Rechenlast (O(m·N), m = Quellenzahl, N = Filterlänge).
+  
+- **Einsatz:**  
+  VR, hochwertige Spiele, 3D-Audio für Kopfhörer.
+
+---
+
+### 2.2 Ambisonics (First & Higher Order)
+
+- **Prinzip:**  
+  Darstellung des gesamten Schallfelds um den Hörer durch **sphärische Harmonische**.  
+  - FOA (First Order Ambisonics): 4 Kanäle (W, X, Y, Z).
+  - HOA (Higher Order): Mehr Kanäle für höhere Richtungsgenauigkeit.
+  
+- **Eigenschaften:**  
+  - Mischungen unabhängig von Anzahl der Quellen → effizient für viele Klänge.
+  - Richtungsauflösung steigt quadratisch mit Ordnung.
+  - Günstig in VR, da Soundfield einfach rotiert werden kann.
+  
+- **Einsatz:**  
+  360°-Videos, VR, große Szenen mit vielen Quellen.
+
+---
+
+### 2.3 Geometriebasierte Modelle (Occlusion/Delay)
+
+- **Prinzip:**  
+  Einfache Modelle berechnen Dämpfung und Filterung anhand von Hindernissen oder Raumgeometrie:
+  - Raycasts prüfen, ob ein Hindernis zwischen Quelle und Hörer liegt.
+  - Low-Pass-Filter oder Pegelabsenkung simulieren Abschattung.
+  - Verzögerungen können manuell gesetzt werden, um Echoeffekte zu imitieren.
+  
+- **Eigenschaften:**  
+  - Sehr effizient (O(m·logG), G = Geometrieobjekte).
+  - Gute Basis für viele Spiele ohne großen Rechenaufwand.
+  - Weniger realistisch als vollständiges akustisches Raytracing.
+
+- **Einsatz:**  
+  Action-, Shooter- und Multiplayer-Spiele mit Performance-Fokus.
 
 ---
 
@@ -133,4 +173,3 @@ Für das NPC-Labyrinth-Szenario in Godot bedeutet das:
 - Standardfunktionen genügen, um Basisverhalten (Annäherung, Rückzug) zu implementieren.
 - Mit Steam Audio und HRTF wird das System realistischer und liefert feiner abgestufte Wahrnehmung.  
 - Durch offene APIs und freie Lizenzierung eignet sich Godot ideal für Experimente mit akustikgetriebener KI.
-
